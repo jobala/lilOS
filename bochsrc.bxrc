@@ -1,0 +1,6 @@
+megs:            32
+ata0-master:     type=cdrom, path=os.iso, status=inserted
+boot:            cdrom
+log:             bochslog.txt
+clock:           sync=realtime, time0=local
+cpu:             count=1, ips=1000000

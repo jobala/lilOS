@@ -17,7 +17,7 @@ os.iso: kernel.elf
 	grub-mkrescue -o os.iso iso
 
 run: os.iso
-	bochs -f bochsrc.txt -q
+	bochs -f bochsrc.bxrc -q
 
 %.o: %.c
 	$(CC) $(CFLAGS) $< -o $@
