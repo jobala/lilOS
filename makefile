@@ -1,7 +1,7 @@
 OBJECTS = archi386/loader.o
 CC = gcc
-CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-operator \ 
-			-nostartfiles -nodefaultlibs -Wall -Wextra -c
+CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-operator \
+-nostartfiles -nodefaultlibs -Wall -Wextra -c
 
 LDFLAGS = -T archi386/link.ld -m elf_i386
 AS = nasm
@@ -14,7 +14,7 @@ kernel.elf: $(OBJECTS)
 
 os.iso: kernel.elf
 	cp kernel.elf iso/boot/kernel.elf
-	grub-mkrescue -o os.iso os.iso
+	grub-mkrescue -o os.iso iso
 
 run: os.iso
 	bochs -f bochsrc.txt -q
