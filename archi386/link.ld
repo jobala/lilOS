@@ -1,30 +1,31 @@
-/*
-  We want GRUB to load the kernel at a memory address larger than or equal to 0x00100000, 1MB
-  Because addresses lower than 1MB are used by GRUB, BIOS and memory mapped IO
-*/
+ENTRY(start)
+SECTIONS
+{
+    .text 0x100000 :
+    {
+        code = .; _code = .; __code = .;
+        *(.text)
+        . = ALIGN(4096);
 
-ENTRY(loader)                /* The name of the entry label */
+      }
 
-SECTIONS {
-  . = 0x00100000;            /* The code should be loaded at 1MB */
+      .data :
+      {
+          data = .; _data = .; __data = .;
+          *(.data)
+              *(.rodata)
+              . = ALIGN(4096);
 
-  .text ALIGN(0x1000) : {    /* Align at 4kb */
-    *(.text)                 /* All text sections from all files */
-  }
+      }
 
-  .rodata ALIGN(0x1000):     /* Align at 4kb */
-  {
-    *(.rodata*)              /* All read-only data sections from all files */
-  }
+      .bss :
+      {
+          bss = .; _bss = .; __bss = .;
+          *(.bss)
+          . = ALIGN(4096);
 
-  .data ALIGN(0x1000):       /* Align at 4kb */
-  {
-    *(.data)                 /* All data sections from all files */
-  }
+      }
 
-  .bss ALIGN(0x1000):        /* Align at 4kb*/
-  {
-    *(COMMON)                /* All COMMON sections from all files */
-    *(.bss)                  /* All bss sections from all files */
-  }
+      end = .; _end = .; __end = .;
+
 }

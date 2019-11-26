@@ -1,6 +1,6 @@
-OBJECTS = archi386/loader.o
+OBJECTS = archi386/loader.o kernel/main.o
 CC = gcc
-CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-operator \
+CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 -nostartfiles -nodefaultlibs -Wall -Wextra -c
 
 LDFLAGS = -T archi386/link.ld -m elf_i386
