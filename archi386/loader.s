@@ -33,8 +33,6 @@ mboot:
 
 start:
 	push ebx							; Load multiboot header location
-
-	; Execute the kernel
 	cli									; Disable interrupts
 	call main							; Call our main function
 	jmp$								; Enter an infinite loop, to stop our processor from executing whatever is in the memory
