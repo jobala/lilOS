@@ -1,3 +1,7 @@
-int main(struct multiboot *mboot_ptr) {
-    return 0xDEADBABA;
+#include "../common/types.h"
+#include "../drivers/monitor/monitor.h"
+
+int main(void* mboot_ptr) {
+    monitor_clear();
+    monitor_write("Hello, World\nHello, lilOS");
 }

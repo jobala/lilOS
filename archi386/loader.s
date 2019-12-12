@@ -2,7 +2,6 @@
 ; or some other nice stuff. Like perhaps setting up the GDT and Segments. Note that
 ; interrupts are disabled at this point.
 
-
 MBOOT_PAGE_ALIGN	equ 1<<0		 ; Load and kernel and modules on a page boundary
 MBOOT_MEM_INFO 		equ 1<<1         ; Provide your kernel with memory info
 MBOOT_HEADER_MAGIC  equ 0x1BADB002   ; Multiboot magic value
