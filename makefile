@@ -1,4 +1,4 @@
-OBJECTS = archi386/loader.o kernel/main.o
+OBJECTS = archi386/loader.o kernel/main.o common/port/port.o drivers/monitor/monitor.o
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 -nostartfiles -nodefaultlibs -Wall -Wextra -c
@@ -26,4 +26,4 @@ run: os.iso
 	$(AS) $(ASFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o kernel.elf os.iso bochslog.txt
+	rm -rf $(OBJECTS) kernel.elf os.iso bochslog.txt
