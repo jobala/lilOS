@@ -88,6 +88,7 @@ void monitor_clear() {
     move_cursor();
 }
 
+
 void monitor_write(char *msg)
 {
     int i = 0;
@@ -96,3 +97,47 @@ void monitor_write(char *msg)
         monitor_put(msg[i++]);
     }
 }
+
+void monitor_write_hex(u32int n)
+{
+    s32int tmp;
+
+    monitor_write("0x");
+
+    char noZeroes = 1;
+
+    int i;
+    for (i = 28; i > 0; i -= 4)
+    {
+        tmp = (n >> i) & 0xF;
+        if (tmp == 0 && noZeroes != 0)
+        {
+            continue;
+        }
+
+        if (tmp >= 0xA)
+        {
+            noZeroes = 0;
+            monitor_put (tmp-0xA+'a' );
+        }
+        else
+        {
+            noZeroes = 0;
+            monitor_put( tmp+'0'  );
+        }
+    }
+
+    tmp = n & 0xF;
+    if (tmp >= 0xA)
+    {
+        monitor_put (tmp-0xA+'a');
+
+    }
+    else
+    {
+        monitor_put (tmp+'0');
+
+    }
+}
+
+
