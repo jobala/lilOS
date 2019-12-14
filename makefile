@@ -1,4 +1,6 @@
-OBJECTS = archi386/loader.o kernel/main.o common/port/port.o drivers/monitor/monitor.o
+OBJECTS = archi386/loader.o kernel/main.o common/port/port.o drivers/monitor/monitor.o \
+descriptors/gdt.o descriptors/global_desc_table.o
+
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 -nostartfiles -nodefaultlibs -Wall -Wextra -c
