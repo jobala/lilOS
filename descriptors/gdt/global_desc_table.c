@@ -1,5 +1,6 @@
 #include "../../common/types.h"
 #include "global_desc_table.h"
+#include "../idt/interrupt_table.h"
 
 extern void gdt_flush(u32int);
 
@@ -12,6 +13,7 @@ gdt_ptr_t   gdt_ptr;
 void init_descriptor_tables()
 {
     init_gdt();
+    init_idt();
 }
 
 static void init_gdt()

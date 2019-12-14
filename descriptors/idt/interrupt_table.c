@@ -1,19 +1,21 @@
 #include "../../common/types.h"
-#include "interrupt_table.h"
 #include "../../common/libc/memset.h"
+#include "interrupt_table.h"
+
+extern void idt_flush(u32int);
+
+static void idt_set_gate(u8int, u32int, u16int, u8int);
 
 idt_entry_t idt_entries[256];
 idt_ptr_t   idt_ptr;
 
-extern void idt_flush(u32int);
-static void idt_set_gate(u8int, u32int, u16int, u8int);
 
 void init_idt()
 {
-    idt_ptr.limit = sizeof(idt_entry_t) * 256 -1;
-    idt_ptr.base  = (u32int)&idt_entries;
+    idt_ptr.limit = sizeof(idt_entry_t) * 256 - 1;
+    idt_ptr.base  = (u32int) &idt_entries;
 
-    memset(&idt_entries, 0, sizeof(idt_entry_t)*256);
+    memset(&idt_entries, 0, sizeof(idt_entry_t) * 256);
 
     idt_set_gate( 0, (u32int)isr0 , 0x08, 0x8E);
     idt_set_gate( 1, (u32int)isr1 , 0x08, 0x8E);
@@ -46,7 +48,7 @@ void init_idt()
     idt_set_gate(28, (u32int)isr28, 0x08, 0x8E);
     idt_set_gate(29, (u32int)isr29, 0x08, 0x8E);
     idt_set_gate(30, (u32int)isr30, 0x08, 0x8E);
-//    idt_set_gate(31, (u32int)isr31, 0x08, 0x8E);
+    idt_set_gate(31, (u32int)isr31, 0x08, 0x8E);
 
     idt_flush((u32int)&idt_ptr);
 }
