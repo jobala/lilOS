@@ -1,10 +1,13 @@
 #include "../common/types.h"
 #include "../drivers/monitor/monitor.h"
-#include "../descriptors/global_desc_table.h"
+#include "../descriptors/gdt/global_desc_table.h"
 
 int main(void* mboot_ptr) {
     init_descriptor_tables();
 
     monitor_clear();
-    monitor_write("Hello, World\nHello, lilOS");
+    monitor_write("Hello World\n");
+
+    asm volatile("int $0x3");
+    asm volatile("int $0x4");
 }

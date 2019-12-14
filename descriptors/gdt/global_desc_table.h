@@ -1,4 +1,5 @@
-#include "../common/types.h"
+#include "../../common/types.h"
+#include "../idt/interrupt_table.h"
 
 struct gdt_entry_struct
 {

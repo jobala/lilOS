@@ -1,4 +1,4 @@
-#include "../common/types.h"
+#include "../../common/types.h"
 #include "global_desc_table.h"
 
 extern void gdt_flush(u32int);

@@ -34,5 +34,5 @@ start:
 	push ebx							; Load multiboot header location
 	cli									; Disable interrupts
 	call main							; Call our main function
-	jmp$								; Enter an infinite loop, to stop our processor from executing whatever is in the memory
+	jmp $								; Enter an infinite loop, to stop our processor from executing whatever is in the memory
 										; after our kernel.
