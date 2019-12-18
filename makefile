@@ -30,3 +30,11 @@ run: os.iso
 
 clean:
 	rm -rf $(OBJECTS) kernel.elf os.iso bochslog.txt
+
+make install:
+	docker build  -t jobala/lilos .
+	docker rm infalliable-edison
+	docker run --name infalliable-edison jobala/lilos
+	docker cp infalliable-edison:/var/www/os.iso .
+	bochs -f bochsrc.bxrc -q
+
