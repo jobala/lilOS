@@ -8,6 +8,6 @@ int main(void* mboot_ptr) {
     monitor_clear();
     monitor_write("Hello World\n");
 
-    asm volatile("int $0x3");
+    asm volatile("int $0x28");
     asm volatile("int $0x4");
 }

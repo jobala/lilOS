@@ -18,6 +18,10 @@ void isr_handler(registers_t regs)
 
 void irq_handler(registers_t regs)
 {
+    monitor_write("handled in IRQ: ");
+    monitor_write_hex(regs.int_no);
+    monitor_write("\n");
+
     if (regs.int_no >= 40)
     {
         write_byte_to_port(0xA0, 0x20);

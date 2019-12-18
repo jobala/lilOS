@@ -1,11 +1,13 @@
 #include "../../common/types.h"
+#include "../../common/port/port.h"
 #include "../../common/libc/memset.h"
 #include "interrupt_table.h"
 
 extern void idt_flush(u32int);
 
 static void idt_set_gate(u8int, u32int, u16int, u8int);
-static void set_gate();
+static void set_idt_gate();
+static void remap_pic();
 
 idt_entry_t idt_entries[256];
 idt_ptr_t   idt_ptr;
@@ -35,16 +37,16 @@ static void idt_set_gate(u8int num, u32int base, u16int sel, u8int flags)
 
 static void remap_pic()
 {
-  outb(0x20, 0x11);
-  outb(0xA0, 0x11);
-  outb(0x21, 0x20);
-  outb(0xA1, 0x28);
-  outb(0x21, 0x04);
-  outb(0xA1, 0x02);
-  outb(0x21, 0x01);
-  outb(0xA1, 0x01);
-  outb(0x21, 0x0);
-  outb(0xA1, 0x0);
+  write_byte_to_port(0x20, 0x11);
+  write_byte_to_port(0xA0, 0x11);
+  write_byte_to_port(0x21, 0x20);
+  write_byte_to_port(0xA1, 0x28);
+  write_byte_to_port(0x21, 0x04);
+  write_byte_to_port(0xA1, 0x02);
+  write_byte_to_port(0x21, 0x01);
+  write_byte_to_port(0xA1, 0x01);
+  write_byte_to_port(0x21, 0x0);
+  write_byte_to_port(0xA1, 0x0);
 }
 
 static void set_idt_gate()
