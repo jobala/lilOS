@@ -1,5 +1,7 @@
 #include "../../common/types.h"
 
+#define IRQ0    32
+
 typedef struct registers
 {
     u32int ds;

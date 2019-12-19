@@ -19,8 +19,8 @@ void init_idt()
     idt_ptr.base  = (u32int) &idt_entries;
 
     memset(&idt_entries, 0, sizeof(idt_entry_t) * 256);
-    set_idt_gate();
     remap_pic();
+    set_idt_gate();
     idt_flush((u32int)&idt_ptr);
 }
 
@@ -47,6 +47,8 @@ static void remap_pic()
   write_byte_to_port(0xA1, 0x01);
   write_byte_to_port(0x21, 0x0);
   write_byte_to_port(0xA1, 0x0);
+
+  asm volatile("sti");
 }
 
 static void set_idt_gate()
