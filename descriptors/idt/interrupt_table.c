@@ -37,10 +37,12 @@ static void idt_set_gate(u8int num, u32int base, u16int sel, u8int flags)
 
 static void remap_pic()
 {
-  write_byte_to_port(0x20, 0x11);
-  write_byte_to_port(0xA0, 0x11);
-  write_byte_to_port(0x21, 0x20);
-  write_byte_to_port(0xA1, 0x28);
+  write_byte_to_port(0x20, 0x11);  // Restart PIC1
+  write_byte_to_port(0xA0, 0x11);  // Restart PIC2
+  write_byte_to_port(0x21, 0x20);  // PIC1 now starts at 32
+  write_byte_to_port(0xA1, 0x28);  // PIC2 now start at 40
+
+  // set up cascading
   write_byte_to_port(0x21, 0x04);
   write_byte_to_port(0xA1, 0x02);
   write_byte_to_port(0x21, 0x01);

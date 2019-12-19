@@ -1,4 +1,4 @@
-OBJECTS = archi386/loader.o kernel/main.o common/port/port.o common/libc/memset.o drivers/monitor/monitor.o  drivers/pit/timer.o\
+OBJECTS = archi386/loader.o kernel/main.o common/port/port.o common/libc/memset.o drivers/monitor/monitor.o drivers/keyboard/keyboard.o drivers/pit/timer.o\
 descriptors/gdt/gdt.o descriptors/gdt/global_desc_table.o \
 descriptors/idt/idt.o descriptors/idt/interrupt.o descriptors/idt/interrupt_table.o descriptors/idt/isr.o
 

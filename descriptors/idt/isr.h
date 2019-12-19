@@ -1,6 +1,7 @@
 #include "../../common/types.h"
 
 #define IRQ0    32
+#define IRQ1    33
 
 typedef struct registers
 {
