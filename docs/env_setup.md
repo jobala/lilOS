@@ -15,7 +15,14 @@ $ build-essential nasm xorriso grub-pc-bin bochs bochs-sdl
 For windows we need a linux environment. You can achieve this using the Windows Subsystem for Linux. I have tested with Ubuntu and it is what I recommend for this tutorial. After getting Ubuntu installed, install the following software.
 
 ```
-$ build-essential nasm xorriso grub-pc-bin bochs bochs-sdl
+$ build-essential nasm xorriso grub-pc-bin bochs bochs-sdl qemu-user-static
+$ update-binfmts --install i386 /usr/bin/qemu-i386-static --magic '\x7fELF\x01\x01\x01\x03\x00\x00\x00\x00\x00\x00\x00\x00\x03\x00\x03\x00\x01\x00\x00\x00' --mask '\xff\xff\xff\xff\xff\xff\xff\xfc\xff\xff\xff\xff\xff\xff\xff\xff\xf8\xff\xff\xff\xff\xff\xff\xff'
+
+```
+Then run the command below
+
+```
+sudo service binfmt-support start
 ```
 
 ## MacOS
